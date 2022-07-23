@@ -10,7 +10,7 @@ class IndexView(generic.ListView):
     context_object_name = "todo_list"
 
     def get_queryset(self):
-        return Todo.objects.order_by("-created_at")
+        return Todo.objects.all().order_by("-created_at")
 
 
 def add_todo(request):
