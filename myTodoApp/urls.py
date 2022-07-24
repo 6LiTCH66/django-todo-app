@@ -21,8 +21,7 @@ from todo import views
 
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('todo/', include('todo.urls')),
+    path('', include('todo.urls')),
     path('admin/', admin.site.urls),
     path('user/', include('django.contrib.auth.urls')),
     path('user/signup/', views.sign_up, name='signup')

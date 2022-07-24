@@ -4,7 +4,6 @@
 {% block content %}
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
-        <h1>{{ form.errors }}</h1>
         <section class="vh-90 gradient-custom">
             <div class="container py-3 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">

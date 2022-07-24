@@ -4,13 +4,13 @@ from .models import Todo
 from .forms import AddTodoForm
 from django.contrib import messages
 from .forms import UserSignUpForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexView(LoginRequiredMixin, generic.ListView):
-    login_url = 'user/login'
     template_name = 'todo/index.html'
+
     context_object_name = "todo_list"
 
     def get_queryset(self):

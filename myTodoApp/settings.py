@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0nmiohctc9!ut8v0hy)hj^%726(b48h9qa=l$fa#30$fd1+&-0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/todo'
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'user/login'
 LOGOUT_URL = 'logout'
 
 STATICFILES_DIRS = [
