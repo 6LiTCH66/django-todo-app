@@ -3,22 +3,27 @@ from django.views import generic, View
 from .models import Todo
 from .forms import AddTodoForm
 from django.contrib import messages
+from .forms import UserSignUpForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
+    login_url = 'user/login'
     template_name = 'todo/index.html'
     context_object_name = "todo_list"
 
     def get_queryset(self):
-        return Todo.objects.all().order_by("-created_at")
+        return Todo.objects.filter(user=self.request.user).order_by("-created_at")
 
 
 def add_todo(request):
     if request.method == "POST":
         form = AddTodoForm(request.POST)
         if form.is_valid():
-            todo_text = request.POST['todo_text']
-            Todo.objects.create(todo_text=todo_text)
+            todo = form.save(commit=False)
+            todo.user = request.user
+            todo.save()
             messages.success(request, "Todo has been added successfully!")
         else:
             messages.error(request, "Field cannot be empty.")
@@ -51,3 +56,14 @@ def error_404(request, exception):
     return redirect("todos:index")
 
 
+def sign_up(request):
+    if request.method == "POST":
+        form = UserSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('todos:index')
+    else:
+        form = UserSignUpForm()
+
+    return render(request, 'registration/signup.html', {'form': form})
