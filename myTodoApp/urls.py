@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
 from django.conf.urls import handler404
+from todo import views
 
 
 urlpatterns = [
-    path('', lambda req: redirect("todos:index")),
+    path('', views.IndexView.as_view(), name='index'),
     path('todo/', include('todo.urls')),
     path('admin/', admin.site.urls),
+    path('user/', include('django.contrib.auth.urls'))
 ]
 
 handler404 = 'todo.views.error_404'

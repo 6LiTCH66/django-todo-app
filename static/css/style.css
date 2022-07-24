@@ -1,3 +1,7 @@
+body{
+    background-color: #fcde67;
+    overflow: hidden;
+}
 .nav-link.active{
     border-bottom-color: #e99f4c !important;
 }
@@ -16,4 +20,28 @@
 }
 .todo-items{
     color: #030e12 !important;
+}
+
+ul.list-group{
+    height: 253px;
+    overflow-y: scroll;
+}
+.form-label.requiredField{
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.asteriskField {
+    display: none;
+}
+*:focus {
+    outline: none;
+    box-shadow: none!important;
+    border:1px solid #ccc !important;
+}
+
+.text-white-50{
+    outline: 0!important;
+    border: none!important;
 }

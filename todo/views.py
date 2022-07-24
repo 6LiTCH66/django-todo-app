@@ -49,3 +49,5 @@ def delete_todo(request, todo_id):
 
 def error_404(request, exception):
     return redirect("todos:index")
+
+
